@@ -21,3 +21,16 @@ def text_to_morse(text):
         else:
             morse_code += MORSE_CODE_DICT[char] + ' '
     return morse_code.strip()  
+def morse_to_text(morse_code):
+    morse_code = morse_code.split(' ')
+    text = ''
+    for code in morse_code:
+        if code in MORSE_CODE_DICT.values():
+            for key, value in MORSE_CODE_DICT.items():
+                if code == value:
+                    text += key
+        elif code == '/':
+            text += ' '
+        else:
+            raise ValueError(f"Invalid Morse code '{code}' in the input. Please enter valid Morse code.")
+    return text
